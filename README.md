@@ -62,7 +62,15 @@ Consulta el archivo [`README-GUIA.md`](./README-GUIA.md) para:
 
 ---
 
-## 📣 Comparte y enseña
+## 🌐 Redes y contacto
+
+📌 Autor: [Jose Garagorry](https://www.linkedin.com/in/jgaragorry/)  
+📬 LinkedIn: [linkedin.com/in/jgaragorry](https://www.linkedin.com/in/jgaragorry/)  
+🎥 TikTok: [@jgaragorry.dev](https://www.tiktok.com/@jgaragorry.dev)  
+📱 WhatsApp Comunidad: [Únete aquí](https://wa.me/message/XXXXXXXXXXXX) *(actualiza con tu enlace personalizado)*  
+📦 Repositorio: [github.com/jgaragorry](https://github.com/jgaragorry)
+
+---
 
 Este workshop está diseñado para ser enseñado, compartido y adaptado.  
 Si lo usas en clases o redes, ¡etiquétame y comparte tu experiencia!
