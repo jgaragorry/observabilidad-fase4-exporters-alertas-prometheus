@@ -1,0 +1,9 @@
+- alert: MultiplesHostsCaidos
+  expr: count(up == 0) > 2
+  for: 1m
+  labels:
+    severity: critical
+  annotations:
+    summary: "Múltiples hosts están caídos"
+    description: "Más de 2 targets están sin respuesta. Verifica conectividad o estado de los servicios."
+

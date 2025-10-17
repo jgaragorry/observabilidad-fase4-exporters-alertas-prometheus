@@ -1,0 +1,66 @@
+{
+  "title": "Timeline y Heatmap de Alertas",
+  "refresh": "10s",
+  "schemaVersion": 36,
+  "version": 1,
+  "panels": [
+    {
+      "type": "heatmap",
+      "title": "Frecuencia de alertas por instancia",
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "count_over_time(ALERTS{alertstate=\"firing\"}[5m])",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "min": 0,
+          "max": 10
+        }
+      },
+      "options": {
+        "color": {
+          "mode": "spectrum"
+        },
+        "heatmap": {
+          "bucketSpacing": 0,
+          "reverseYBuckets": false
+        }
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "Timeline de alertas activas por severidad",
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "count(ALERTS{alertstate=\"firing\"}) by (severity)",
+          "refId": "B"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": 0 },
+              { "color": "orange", "value": 1 },
+              { "color": "red", "value": 3 }
+            ]
+          }
+        }
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom"
+        }
+      }
+    }
+  ]
+}
+

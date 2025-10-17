@@ -1,0 +1,68 @@
+{
+  "title": "Alertas en Tiempo Real",
+  "refresh": "10s",
+  "schemaVersion": 36,
+  "version": 1,
+  "panels": [
+    {
+      "type": "table",
+      "title": "Alertas activas",
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "ALERTS{alertstate=\"firing\"}",
+          "refId": "A"
+        }
+      ],
+      "columns": [
+        { "text": "Alerta", "value": "labels.alertname" },
+        { "text": "Instancia", "value": "labels.instance" },
+        { "text": "Severidad", "value": "labels.severity" },
+        { "text": "Estado", "value": "alertstate" },
+        { "text": "Tiempo activo", "value": "value" }
+      ]
+    },
+    {
+      "type": "stat",
+      "title": "Total de alertas activas",
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "count(ALERTS{alertstate=\"firing\"})",
+          "refId": "B"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": 0 },
+              { "color": "orange", "value": 1 },
+              { "color": "red", "value": 3 }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "type": "piechart",
+      "title": "Distribución por severidad",
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "count by (severity) (ALERTS{alertstate=\"firing\"})",
+          "refId": "C"
+        }
+      ],
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "right"
+        }
+      }
+    }
+  ]
+}
+

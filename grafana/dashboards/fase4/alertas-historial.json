@@ -1,0 +1,54 @@
+{
+  "title": "Historial de Alertas Resueltas",
+  "refresh": "10s",
+  "schemaVersion": 36,
+  "version": 1,
+  "panels": [
+    {
+      "type": "table",
+      "title": "Alertas resueltas recientemente",
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "ALERTS{alertstate=\"resolved\"}",
+          "refId": "A"
+        }
+      ],
+      "columns": [
+        { "text": "Alerta", "value": "labels.alertname" },
+        { "text": "Instancia", "value": "labels.instance" },
+        { "text": "Severidad", "value": "labels.severity" },
+        { "text": "Estado", "value": "alertstate" },
+        { "text": "Resolución", "value": "value" }
+      ],
+      "transformations": [],
+      "options": {
+        "showHeader": true
+      }
+    },
+    {
+      "type": "stat",
+      "title": "Total de alertas resueltas",
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "count(ALERTS{alertstate=\"resolved\"})",
+          "refId": "B"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "gray", "value": 0 },
+              { "color": "green", "value": 1 }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}
+

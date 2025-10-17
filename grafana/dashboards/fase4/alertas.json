@@ -1,0 +1,37 @@
+{
+  "title": "Alertas Fase 4",
+  "panels": [
+    {
+      "type": "table",
+      "title": "Alertas activas",
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "ALERTS{alertstate=\"firing\"}",
+          "refId": "A"
+        }
+      ],
+      "columns": [
+        { "text": "Alertname", "value": "labels.alertname" },
+        { "text": "Instance", "value": "labels.instance" },
+        { "text": "Severity", "value": "labels.severity" },
+        { "text": "State", "value": "alertstate" }
+      ]
+    },
+    {
+      "type": "stat",
+      "title": "Cantidad de alertas activas",
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "count(ALERTS{alertstate=\"firing\"})",
+          "refId": "B"
+        }
+      ]
+    }
+  ],
+  "schemaVersion": 36,
+  "version": 1,
+  "refresh": "10s"
+}
+

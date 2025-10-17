@@ -1,0 +1,52 @@
+{
+  "title": "Latencia y Estado de Hosts",
+  "panels": [
+    {
+      "type": "graph",
+      "title": "Latencia de endpoints (Blackbox)",
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "probe_duration_seconds",
+          "legendFormat": "{{instance}}",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "decimals": 2
+        },
+        "overrides": []
+      }
+    },
+    {
+      "type": "table",
+      "title": "Estado de múltiples hosts",
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "up",
+          "refId": "B"
+        }
+      ],
+      "columns": [
+        { "text": "Instance", "value": "labels.instance" },
+        { "text": "Estado", "value": "value" }
+      ],
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "indexByName": {}
+          }
+        }
+      ]
+    }
+  ],
+  "schemaVersion": 36,
+  "version": 1,
+  "refresh": "10s"
+}
+

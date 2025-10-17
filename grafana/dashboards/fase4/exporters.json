@@ -1,0 +1,44 @@
+{
+  "title": "Exporters Fase 4",
+  "panels": [
+    {
+      "type": "graph",
+      "title": "Uso de CPU por núcleo",
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "rate(node_cpu_seconds_total{mode!=\"idle\"}[1m])",
+          "legendFormat": "{{cpu}}",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "type": "stat",
+      "title": "Sitio alcanzable (Blackbox)",
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "probe_success",
+          "refId": "B"
+        }
+      ]
+    },
+    {
+      "type": "graph",
+      "title": "Uso de memoria en contenedores (cAdvisor)",
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "container_memory_usage_bytes",
+          "legendFormat": "{{name}}",
+          "refId": "C"
+        }
+      ]
+    }
+  ],
+  "schemaVersion": 36,
+  "version": 1,
+  "refresh": "10s"
+}
+

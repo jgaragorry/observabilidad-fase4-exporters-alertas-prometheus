@@ -1,0 +1,9 @@
+- alert: LatenciaAlta
+  expr: probe_duration_seconds > 2
+  for: 30s
+  labels:
+    severity: warning
+  annotations:
+    summary: "Latencia alta en {{ $labels.instance }}"
+    description: "El endpoint {{ $labels.instance }} está tardando más de 2 segundos en responder."
+
